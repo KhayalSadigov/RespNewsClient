@@ -1,0 +1,18 @@
+footer {
+  background-color: #fff;
+  padding: 40px 0;
+  margin-top: 20px;
+  .content {
+    display: flex;
+    .block {
+        padding: 5px;
+      width: calc(100% / 3);
+      .logo {
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
