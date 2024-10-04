@@ -9,7 +9,7 @@ export default function CardSkeleton() {
   let array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
   return (
    <div className={styles.cardList}>
-    {array.map((e,i)=>{
+    {array.map((e,i)=>{ 
         return  <div className={styles.card} key={i}>
             <Card   sx={{ m: 0 }}>
         <CardHeader
