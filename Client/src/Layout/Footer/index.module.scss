@@ -9,6 +9,12 @@ footer {
     .block {
       padding: 45px 35px;
       width: calc(100% / 3);
+      @media screen and (max-width : 880px) {
+        width: calc(100% / 2);
+      }
+      @media screen and (max-width : 650px) {
+        width: calc(100%);
+      }
       display: flex;
       .logo {
         display: flex;

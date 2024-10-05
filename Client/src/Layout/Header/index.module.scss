@@ -1,18 +1,39 @@
 header {
   margin-bottom: 20px;
   background-color: #fff;
+  .responseLogo{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    .photo {
+      width: 130px;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      img {
+        height: 100px;
+      }
+      @media screen and (min-width: 480px) {
+        display: none;
+      }
+    }
+  }
   .logo {
     background-color: #f2f2f2;
     display: flex;
     padding: 20px 0;
+    
     .content {
       border-radius: 3px;
       overflow: hidden;
-
+      @media screen and (max-width: 480px) {
+        justify-content: center;
+      }
       background-color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .photo {
         width: 130px;
         display: flex;
@@ -21,10 +42,19 @@ header {
         img {
           height: 100px;
         }
+        @media screen and (max-width: 480px) {
+          display: none;
+        }
       }
       .name {
         img {
-          height: 80px;
+          
+          @media screen and (max-width: 480px) {
+            width: 100%;
+          }
+          @media screen and (min-width: 480px) {
+            height: 80px;
+          }
         }
       }
     }
@@ -38,10 +68,10 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .hamBtn{
+        .hamBtn {
           display: none;
-          @media screen and (max-width : 1000px) {
-            display:block ;
+          @media screen and (max-width: 1000px) {
+            display: block;
           }
         }
         .langBtns {
@@ -63,8 +93,8 @@ header {
           list-style: none;
           height: 100%;
           align-items: center;
-          @media screen and (max-width : 1000px) {
-            display:none ;
+          @media screen and (max-width: 1000px) {
+            display: none;
           }
           li {
             height: 100%;
@@ -89,17 +119,17 @@ header {
           height: 100%;
           padding: 2px 0;
           width: 30%;
-          @media screen and (max-width : 1000px) {
+          @media screen and (max-width: 1000px) {
             width: 50%;
           }
-          @media screen and (max-width : 1000px) {
+          @media screen and (max-width: 650px) {
             display: none;
           }
           display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
-          button{
+          button {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -109,8 +139,8 @@ header {
           .icon {
             position: absolute;
             right: 15px;
-            transition: .2s;
-            &:hover{
+            transition: 0.2s;
+            &:hover {
               color: red;
               cursor: pointer;
             }

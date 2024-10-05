@@ -3,6 +3,7 @@ import styles from "./index.module.scss";
 import { DataContext } from "../../Context/dataContext";
 import { Link } from "react-router-dom";
 import langCheck from "./language";
+import SearchIcon from "@mui/icons-material/Search";
 
 function NavModal() {
   const store = useContext(DataContext);
@@ -84,12 +85,22 @@ function NavModal() {
             </li>
           </ul>
         </div>
+        <form className={styles.search}>
+          <input
+            type="text"
+            placeholder={langCheck.nav.search[store.lang.data]}
+            required
+          />
+          <button className={styles.icon} type="submit">
+            <SearchIcon fontSize="large" />
+          </button>
+        </form>
       </div>
       <div
         onClick={() => {
           store.navModal.setData(false);
         }}
-        style={store.navModal.data ? {}:{bottom:'-100%'}}
+        style={store.navModal.data ? {} : { bottom: "-100%" }}
         className={styles.glass}
       ></div>
     </>

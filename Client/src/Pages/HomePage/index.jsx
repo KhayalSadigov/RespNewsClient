@@ -6,9 +6,9 @@ function HomePage() {
   let store = useContext(DataContext);
   store.route.setData("home");
   return (
-    <main >
+    <section >
       <CardSkeleton />
-    </main>
+    </section>
   );
 }
 

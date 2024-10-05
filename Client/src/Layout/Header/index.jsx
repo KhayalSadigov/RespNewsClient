@@ -2,17 +2,31 @@ import { useContext } from "react";
 import styles from "./index.module.scss";
 import { Link } from "react-router-dom";
 import { DataContext } from "../../Context/dataContext";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import langCheck from "./language";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 function Header() {
   let store = useContext(DataContext);
-  
+
   return (
     <header>
       <div className={styles.logo}>
         <div className="container">
+        <div className={styles.responseLogo}>
+            <div className={styles.photo}>
+              <img
+                src="./../../../public/images/LogoPhoto.jpeg"
+                alt="Haydar Aliyev"
+              />
+            </div>
+            <div className={styles.photo}>
+              <img
+                src="./../../../public/images/LogoPhoto2.jpeg"
+                alt="Ilham Aliyev"
+              />
+            </div>
+          </div>
           <div className={styles.content}>
             <div className={styles.photo}>
               <img
@@ -26,7 +40,7 @@ function Header() {
             <div className={styles.photo}>
               <img
                 src="./../../../public/images/LogoPhoto2.jpeg"
-                alt="Haydar Aliyev"
+                alt="Ilham Aliyev"
               />
             </div>
           </div>
@@ -36,9 +50,13 @@ function Header() {
         <div className="container">
           <div className={styles.content}>
             <div className={styles.nav}>
-              <MenuIcon fontSize="large" onClick={()=>{
-                store.navModal.setData(!store.navModal.data)
-              }} className={styles.hamBtn}/>
+              <MenuIcon
+                fontSize="large"
+                onClick={() => {
+                  store.navModal.setData(!store.navModal.data);
+                }}
+                className={styles.hamBtn}
+              />
               <ul className={styles.navBtns}>
                 <li>
                   <Link
@@ -94,8 +112,14 @@ function Header() {
                 </li>
               </ul>
               <form className={styles.search}>
-                <input type="text" placeholder={langCheck.nav.search[store.lang.data]} required />
-                <button className={styles.icon} type="submit"><SearchIcon /></button>
+                <input
+                  type="text"
+                  placeholder={langCheck.nav.search[store.lang.data]}
+                  required
+                />
+                <button className={styles.icon} type="submit">
+                  <SearchIcon />
+                </button>
               </form>
               <ul className={styles.langBtns}>
                 <li

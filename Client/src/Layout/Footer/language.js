@@ -1,3 +1,4 @@
+const date = new Date()
 const langCheck = {
   logo: {
     header: ["Bizi izləyin !", "Follow us !", "Подписывайтесь на нас !"],
@@ -33,9 +34,9 @@ const langCheck = {
       'Газета "Respublika"',
     ],
     content: [
-      "Bütün hüquqlar qorunur.",
-      "All rights reserved.",
-      "Все права защищены",
+      " | Bütün hüquqlar qorunur | " + date.getFullYear(),
+      " | All rights reserved | "+ date.getFullYear(),
+      " | Все права защищены | "+ date.getFullYear(),
     ],
   },
 };
