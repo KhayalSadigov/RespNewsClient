@@ -20,9 +20,9 @@ function NavModal() {
                 style={
                   store.route.data == "home"
                     ? {
-                        backgroundColor: "red",
+                        backgroundColor: "#1976D2",
                         color: "white",
-                        border: "2px solid red",
+                        border: "2px solid #1976D2",
                       }
                     : {}
                 }
@@ -37,9 +37,9 @@ function NavModal() {
                 style={
                   store.route.data == "categories"
                     ? {
-                        backgroundColor: "red",
+                        backgroundColor: "#1976D2",
                         color: "white",
-                        border: "2px solid red",
+                        border: "2px solid #1976D2",
                       }
                     : {}
                 }
@@ -54,9 +54,9 @@ function NavModal() {
                 style={
                   store.route.data == "contact"
                     ? {
-                        backgroundColor: "red",
+                        backgroundColor: "#1976D2",
                         color: "white",
-                        border: "2px solid red",
+                        border: "2px solid #1976D2",
                       }
                     : {}
                 }
@@ -71,9 +71,9 @@ function NavModal() {
                 style={
                   store.route.data == "about"
                     ? {
-                        backgroundColor: "red",
+                        backgroundColor: "#1976D2",
                         color: "white",
-                        border: "2px solid red",
+                        border: "2px solid #1976D2",
                       }
                     : {}
                 }

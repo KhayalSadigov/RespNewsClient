@@ -62,7 +62,7 @@ function Header() {
                   <Link
                     style={
                       store.route.data == "home"
-                        ? { backgroundColor: "red", color: "white" }
+                        ? { backgroundColor: "#1976D2", color: "white" }
                         : {}
                     }
                     className={styles.link}
@@ -75,7 +75,7 @@ function Header() {
                   <Link
                     style={
                       store.route.data == "categories"
-                        ? { backgroundColor: "red", color: "white" }
+                        ? { backgroundColor: "#1976D2", color: "white" }
                         : {}
                     }
                     className={styles.link}
@@ -88,7 +88,7 @@ function Header() {
                   <Link
                     style={
                       store.route.data == "contact"
-                        ? { backgroundColor: "red", color: "white" }
+                        ? { backgroundColor: "#1976D2", color: "white" }
                         : {}
                     }
                     className={styles.link}
@@ -101,7 +101,7 @@ function Header() {
                   <Link
                     style={
                       store.route.data == "about"
-                        ? { backgroundColor: "red", color: "white" }
+                        ? { backgroundColor: "#1976D2", color: "white" }
                         : {}
                     }
                     className={styles.link}

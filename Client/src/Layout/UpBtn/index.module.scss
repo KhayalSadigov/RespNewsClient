@@ -1,0 +1,19 @@
+.upBtn {
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  background: #1976d288;
+  color: white;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: #1976d2;
+  }
+}

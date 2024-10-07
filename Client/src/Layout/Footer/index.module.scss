@@ -24,7 +24,7 @@ footer {
         height: 100%;
         h2 {
           color: rgb(76, 76, 76);
-          border-bottom: 2px solid red;
+          border-bottom: 2px solid #1976D2;
           padding-bottom: 15px;
         }
         .image {
@@ -43,7 +43,7 @@ footer {
             color: rgb(76, 76, 76);
             transition: 0.3s;
             &:hover {
-              color: red;
+              color: #1976D2;
             }
           }
         }
@@ -54,7 +54,7 @@ footer {
         gap: 30px;
         h2 {
           color: rgb(76, 76, 76);
-          border-bottom: 2px solid red;
+          border-bottom: 2px solid #1976D2;
           padding-bottom: 15px;
         }
         span {
@@ -71,7 +71,7 @@ footer {
         gap: 25px;
         h2 {
           color: rgb(76, 76, 76);
-          border-bottom: 2px solid red;
+          border-bottom: 2px solid #1976D2;
           padding-bottom: 15px;
         }
         ul {
@@ -90,7 +90,7 @@ footer {
               &:hover {
                 transform: translateX(7px);
                 cursor: pointer;
-                color: red;
+                color: #1976D2;
               }
             }
             .link {
@@ -100,7 +100,7 @@ footer {
               &:hover {
                 transform: translateX(7px);
                 cursor: pointer;
-                color: red;
+                color: #1976D2;
               }
             }
           }
@@ -120,10 +120,10 @@ footer {
     gap: 3px;
     text-align: center;
     span span{
-      color: red;
+      color: #1976D2;
     }
     a{
-      color: red;
+      color: #1976D2;
       text-decoration: none;
     }
   }
