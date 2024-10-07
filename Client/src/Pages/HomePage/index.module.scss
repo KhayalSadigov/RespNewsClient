@@ -1,46 +1,27 @@
-.hero {
-  background-color: #f6f5f5;
-  height: 100vh;
-  overflow: hidden;
-  .content {
-    height: 100vh;
-    display: flex;
-    background-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    align-items: center;
-    .left {
-      width: 50%;
-      img {
-        width: 100%;
-      }
-    }
-    .right {
-      padding: 80px 40px;
+.hero{
+  .exchange{
+    padding: 0 10px;
+    width: 100%;
+    .content{
+      overflow: hidden;
+      width: 100%;
+      padding: 15px 10px;
       background-color: #fff;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-      .head {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        h1 {
-          font-size: 40px;
-          color: #7B95BA;
+      border-radius: 5px ;
+      box-shadow: rgba(100, 100, 111, 0.079) 0px 7px 29px 0px;
+      .rate{
+        width: 100%;
+        animation: scroll-left 10s linear infinite; /* Animasiyanı tənzimləyir */
+
+      /* Mətni hərəkət etdirmək üçün animasiya */
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(-100%); /* Mətni ekranın sol xaricindən başlayır */
         }
-        p{
-            color: #7B95BA;
-            font-size: 20px;
-            padding : 20px 0;
-            border-top: 2px solid #7B95BA;
+        100% {
+          transform: translateX(100%); /* Mətni ekranın sağ xaricinə keçir */
         }
       }
-      .buttons{
-        display: flex;
-        gap: 10px;
-
       }
     }
   }
