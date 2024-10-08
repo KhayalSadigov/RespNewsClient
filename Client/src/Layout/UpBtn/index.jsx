@@ -7,7 +7,6 @@ const UpWard = () => {
       behavior: "smooth",
     });
   };
-
   return (
     <button className={styles.upBtn} onClick={scrollToTop}>
       <ArrowUpwardIcon />
