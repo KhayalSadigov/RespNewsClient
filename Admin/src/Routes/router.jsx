@@ -1,8 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainRout from "../Pages/MainRout";
-import StaticEdit from "../Pages/StaticEdit";
-import AddPage from "../Pages/AddPage";
 import Dashboard from "../Pages/Dashboard";
+import News from "../Pages/NewsPage";
+import Subscribers from "../Pages/SubscribersPage";
+import UsersPage from "../Pages/AdminsPage";
+import SocialPage from "../Pages/SocialPage";
+import NewspapersPage from "../Pages/NewspapersPage";
+import PhotosPage from "../Pages/PhotosPage";
+import MessagePage from "../Pages/MessagesPage";
 
 const router = createBrowserRouter([
   {
@@ -10,16 +15,37 @@ const router = createBrowserRouter([
     element: <MainRout />,
     children: [
       {
-        path: "dashboard",
+        path: "",
         element: <Dashboard />,
       },
+
       {
-        path: "static",
-        element: <StaticEdit />,
+        path: "subscribers",
+        element: <Subscribers />,
       },
       {
-        path: "add",
-        element: <AddPage />,
+        path: "admins",
+        element: <UsersPage />,
+      },
+      {
+        path: "social",
+        element: <SocialPage />,
+      },
+      {
+        path: "newspapers",
+        element: <NewspapersPage />,
+      },
+      {
+        path: "photos",
+        element: <PhotosPage />,
+      },
+      {
+        path: "news",
+        element: <News />,
+      },
+      {
+        path: "messages",
+        element: <MessagePage />,
       },
     ],
   },

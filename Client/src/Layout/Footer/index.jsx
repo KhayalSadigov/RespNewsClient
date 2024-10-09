@@ -128,8 +128,7 @@ function Footer() {
           Developed By{" "}
           <a href="https://www.linkedin.com/in/khayal-sadigov-12807b237?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
             Khayal Sadigov
-          </a>{" "}
-          and <a href="">Pashazada Malak</a>
+          </a>
         </span>
       </div>
     </footer>
