@@ -59,11 +59,7 @@ function Footer() {
                 >
                   <EmailIcon fontSize="large" />
                 </a>
-                <a
-                  className={styles.icon}
-                  href="tel:+994124412023"
-
-                >
+                <a className={styles.icon} href="tel:+994124412023">
                   <SmartphoneIcon fontSize="large" />
                 </a>
               </div>
@@ -121,13 +117,21 @@ function Footer() {
       </div>
       <div className={styles.info}>
         <span>
-          © <a href="">{langCheck.info.name[store.lang.data]}</a>. {langCheck.info.content[store.lang.data]}
+          © <a href="">{langCheck.info.name[store.lang.data]}</a>.{" "}
+          {langCheck.info.content[store.lang.data]}
         </span>
         <hr />
         <span>
           Developed By{" "}
-          <a href="https://www.linkedin.com/in/khayal-sadigov-12807b237?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/khayal-sadigov-12807b237?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          >
             Khayal Sadigov
+          </a>{" "}
+          and{" "}
+          <a href="https://www.linkedin.com/in/tarlan-aliyev-225bb6319/">
+            Tarlan Aliyev
           </a>
         </span>
       </div>
