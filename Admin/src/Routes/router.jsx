@@ -8,7 +8,6 @@ import SocialPage from "../Pages/SocialPage";
 import NewspapersPage from "../Pages/NewspapersPage";
 import PhotosPage from "../Pages/PhotosPage";
 import MessagePage from "../Pages/MessagesPage";
-import BlogEditor from "../Components/EditBlock";
 
 const router = createBrowserRouter([
   {

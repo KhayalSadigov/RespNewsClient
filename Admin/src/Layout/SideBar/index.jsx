@@ -93,7 +93,7 @@ function SideBar() {
           </Link>
         </div>
         <span>
-          <a href="http://localhost:5174/">
+          <a href="http://192.168.0.111:5174/">
             <ExitToAppIcon />
             <p style={open ? {} : { display: "none" }}>Əsas sayta qayıt</p>
           </a>

@@ -1,0 +1,46 @@
+.edit {
+  padding: 20px;
+  padding-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 150px;
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    h3{
+        width: 100%;
+        border-bottom: 2px solid black;
+        padding-bottom: 5px;
+    }
+    .quill {
+      height: 300px;
+      margin-bottom: 40px;
+    }
+    .imageInp{
+      display: flex;
+      gap: 10px;
+    }
+    .categories{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      .select{
+        width: 100%;
+        // border: 2px solid grey;
+      }
+    }
+    .tags{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 20px 0;
+    }
+    .btn{
+      background-color: #2F3C54;
+      color: white;
+    }
+  }
+}

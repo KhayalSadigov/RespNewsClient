@@ -24,7 +24,6 @@
     align-items: center;
     height: 60px;
     padding: 0px 15px 0px 15px;
-    border-bottom: 2px solid white;
     transition: 0.2s;
     text-wrap: nowrap;
     gap: 10px;
@@ -47,7 +46,7 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.3s;
       &:hover {
         background-color: #46587a;
       }

@@ -8,7 +8,6 @@ function MainRout() {
       <SideBar />
       <div style={{ width: "100%", height:'100vh',overflowY: "scroll" }}>
         <Outlet />
-        <Footer />
       </div>
     </div>
   );

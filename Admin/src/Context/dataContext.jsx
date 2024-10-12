@@ -5,11 +5,17 @@ import { createContext, useState } from "react";
 export const DataContext = createContext("");
 function DataProvider({ children }) {
   const [page, setPage] = useState("home");
+  const [lang, setLang] = useState("AZ");
+
   let store = {
     route : {
       data : page ,
       setData : setPage
     },
+    addLang : {
+      data : lang ,
+      setData : setLang
+    }
   };
   return (
     <>
