@@ -8,6 +8,7 @@ import SocialPage from "../Pages/SocialPage";
 import NewspapersPage from "../Pages/NewspapersPage";
 import PhotosPage from "../Pages/PhotosPage";
 import MessagePage from "../Pages/MessagesPage";
+import BlogEditor from "../Components/NewsAdd";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,12 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
+        children:[
+          {
+            path:'',
+            element : <BlogEditor/>
+          }
+        ]
       },
       {
         path: "messages",
