@@ -10,9 +10,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import { Link } from "react-router-dom";
 
-
-function BlogEditor() {
+function NewsAdd() {
   const store = useContext(DataContext);
 
   const [content, setContent] = useState("");
@@ -77,44 +78,51 @@ function BlogEditor() {
   return (
     <div className={styles.edit}>
       <div className={styles.head}>
-        <h5>Dil Seçimi:</h5>
-        <span
-          onClick={() => {
-            store.addLang.setData("AZ");
-          }}
-          style={
-            store.addLang.data == "AZ"
-              ? { backgroundColor: "#2F3C54", color: "white" }
-              : {}
-          }
-        >
-
-          AZ
-        </span>
-        <span
-          onClick={() => {
-            store.addLang.setData("EN");
-          }}
-          style={
-            store.addLang.data == "EN"
-              ? { backgroundColor: "#2F3C54", color: "white" }
-              : {}
-          }
-        >
-          EN
-        </span>
-        <span
-          onClick={() => {
-            store.addLang.setData("RU");
-          }}
-          style={
-            store.addLang.data == "RU"
-              ? { backgroundColor: "#2F3C54", color: "white" }
-              : {}
-          }
-        >
-          RU
-        </span>
+        <div className={styles.lang}>
+          <h5>Dil Seçimi:</h5>
+          <span
+            onClick={() => {
+              store.addLang.setData("AZ");
+            }}
+            style={
+              store.addLang.data == "AZ"
+                ? { backgroundColor: "#2F3C54", color: "white" }
+                : {}
+            }
+          >
+            AZ
+          </span>
+          <span
+            onClick={() => {
+              store.addLang.setData("EN");
+            }}
+            style={
+              store.addLang.data == "EN"
+                ? { backgroundColor: "#2F3C54", color: "white" }
+                : {}
+            }
+          >
+            EN
+          </span>
+          <span
+            onClick={() => {
+              store.addLang.setData("RU");
+            }}
+            style={
+              store.addLang.data == "RU"
+                ? { backgroundColor: "#2F3C54", color: "white" }
+                : {}
+            }
+          >
+            RU
+          </span>
+        </div>
+        <Link to={"/news"} className={styles.link}>
+          <div className={styles.listBtn}>
+            <ViewListIcon fontSize="medium" />
+            <span>Siyahı</span>
+          </div>
+        </Link>
       </div>
       <div className={styles.block}>
         <TextField
@@ -161,6 +169,17 @@ function BlogEditor() {
           placeholder="Blog yazınızı buraya yazın..."
           className={styles.quill}
         />
+        <div className={styles.tags}>
+          <InputLabel id="demo-simple-select-label">Taglar :</InputLabel>
+          <TagInput
+            className={styles.inp}
+            value={tags}
+            onChange={(value) => {
+              setTags(value);
+            }}
+            block
+          />
+        </div>
         <div className={styles.categories}>
           <InputLabel id="demo-simple-select-label">Kateqoriyalar :</InputLabel>
           <Select
@@ -175,17 +194,6 @@ function BlogEditor() {
             <MenuItem value="iqtisadi">Iqtisadi</MenuItem>
           </Select>
         </div>
-        <div className={styles.tags}>
-          <InputLabel id="demo-simple-select-label">Taglar :</InputLabel>
-          <TagInput
-            className={styles.inp}
-            value={tags}
-            onChange={(value) => {
-              setTags(value);
-            }}
-            block
-          />
-        </div>
         <Button className={styles.btn} onClick={handleSubmit}>
           Paylaş
         </Button>
@@ -194,4 +202,4 @@ function BlogEditor() {
   );
 }
 
-export default BlogEditor;
+export default NewsAdd;

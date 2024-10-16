@@ -8,7 +8,8 @@ import SocialPage from "../Pages/SocialPage";
 import NewspapersPage from "../Pages/NewspapersPage";
 import PhotosPage from "../Pages/PhotosPage";
 import MessagePage from "../Pages/MessagesPage";
-import BlogEditor from "../Components/NewsAdd";
+import NewsList from "../Components/NewsList";
+import NewsAdd from "../Components/NewsAdd";
 
 const router = createBrowserRouter([
   {
@@ -40,15 +41,20 @@ const router = createBrowserRouter([
         path: "photos",
         element: <PhotosPage />,
       },
+
       {
         path: "news",
         element: <News />,
-        children:[
+        children: [
           {
-            path:'',
-            element : <BlogEditor/>
-          }
-        ]
+            path: "",
+            element: <NewsList />,
+          },
+          {
+            path: "add",
+            element: <NewsAdd />,
+          },
+        ],
       },
       {
         path: "messages",

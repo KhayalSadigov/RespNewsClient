@@ -11,7 +11,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import MessageIcon from "@mui/icons-material/Message";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { DataContext } from "../../Context/dataContext";      
+import { DataContext } from "../../Context/dataContext";
 import Tooltip from "@mui/material/Tooltip";
 function SideBar() {
   const [open, setOpen] = useState(false);
@@ -23,22 +23,35 @@ function SideBar() {
     >
       <nav>
         <div className={styles.block}>
-          <span
-            onClick={() => {
-              setOpen(!open);
-            }}
-            className={styles.open}
-          >
-            <MenuIcon />
-            <span style={open ? {} : { display: "none" }}>Admin Panel</span>
-          </span>
+          <Tooltip title="Menu" placement="right">
+            <span
+              onClick={() => {
+                setOpen(!open);
+              }}
+              className={styles.open}
+              style={
+                open
+                  ? {}
+                  : { justifyContent: "center", padding: "15px 0" }
+              }
+            >
+              <MenuIcon />
+              <span style={open ? {} : { display: "none" }}>Admin Panel</span>
+            </span>
+          </Tooltip>
           <Tooltip title="Ana səhifə" placement="right">
-            <Link className={styles.link} to={"/"}>
+            <Link
+              className={styles.link}
+              to={"/"}
+              style={
+                store.route.data == "dashboard"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+            >
               <span
                 style={
-                  store.route.data == "dashboard"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <MapsHomeWorkIcon />{" "}
@@ -47,12 +60,16 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Xəbərlər" placement="right">
-            <Link className={styles.link} to={"/news"}>
+            <Link
+              style={
+                store.route.data == "news" ? { backgroundColor: "#46587a" } : {}
+              }
+              className={styles.link}
+              to={"/news"}
+            >
               <span
                 style={
-                  store.route.data == "news"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <ArticleIcon />{" "}
@@ -61,12 +78,18 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Fotolar" placement="right">
-            <Link className={styles.link} to={"/photos"}>
+            <Link
+              style={
+                store.route.data == "photos"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+              className={styles.link}
+              to={"/photos"}
+            >
               <span
                 style={
-                  store.route.data == "photos"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <PermMediaIcon />{" "}
@@ -75,12 +98,18 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Qəzetlər" placement="right">
-            <Link className={styles.link} to={"/newspapers"}>
+            <Link
+              style={
+                store.route.data == "newspapers"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+              className={styles.link}
+              to={"/newspapers"}
+            >
               <span
                 style={
-                  store.route.data == "newspapers"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <NewspaperIcon />
@@ -89,12 +118,18 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Social media" placement="right">
-            <Link className={styles.link} to={"/social"}>
+            <Link
+              style={
+                store.route.data == "social"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+              className={styles.link}
+              to={"/social"}
+            >
               <span
                 style={
-                  store.route.data == "social"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <PermDeviceInformationIcon />{" "}
@@ -103,12 +138,18 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Mesajlar" placement="right">
-            <Link className={styles.link} to={"/messages"}>
+            <Link
+              style={
+                store.route.data == "messages"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+              className={styles.link}
+              to={"/messages"}
+            >
               <span
                 style={
-                  store.route.data == "messages"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <MessageIcon />{" "}
@@ -117,12 +158,18 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Adminlər" placement="right">
-            <Link className={styles.link} to={"/admins"}>
+            <Link
+              style={
+                store.route.data == "admins"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+              className={styles.link}
+              to={"/admins"}
+            >
               <span
                 style={
-                  store.route.data == "admins"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <AdminPanelSettingsIcon />{" "}
@@ -131,12 +178,18 @@ function SideBar() {
             </Link>
           </Tooltip>
           <Tooltip title="Abunə olanlar" placement="right">
-            <Link className={styles.link} to={"/subscribers"}>
+            <Link
+              style={
+                store.route.data == "subscribers"
+                  ? { backgroundColor: "#46587a" }
+                  : {}
+              }
+              className={styles.link}
+              to={"/subscribers"}
+            >
               <span
                 style={
-                  store.route.data == "subscribers"
-                    ? { backgroundColor: "#46587a" }
-                    : {}
+                  open ? {} : { justifyContent: "center", padding: "15px 0" }
                 }
               >
                 <GroupIcon />{" "}
@@ -145,7 +198,11 @@ function SideBar() {
             </Link>
           </Tooltip>
         </div>
-        <span>
+        <span
+          style={
+            open ? {} : { justifyContent: "center", paddingBottom: "15px 0" }
+          }
+        >
           <a href="http://192.168.0.111:5174/">
             <ExitToAppIcon />
             <p style={open ? {} : { display: "none" }}>Əsas sayta qayıt</p>

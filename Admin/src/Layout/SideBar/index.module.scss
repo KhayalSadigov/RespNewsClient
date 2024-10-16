@@ -11,12 +11,11 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    .open{
+    .open {
       display: flex;
-      padding: 0 15px;
       align-items: center;
-      margin-bottom: 10px;
-      span{
+      height: 60px;
+      span {
         flex-wrap: nowrap;
         padding: 0;
       }
@@ -48,11 +47,11 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      padding-top: 25px;
       justify-content: center;
       .link {
         color: white;
         text-decoration: none;
+        display: flex;
         span {
           text-wrap: nowrap;
           padding: 15px 15px;
@@ -68,7 +67,6 @@
           }
         }
       }
-      
     }
   }
 }
