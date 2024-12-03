@@ -21,7 +21,7 @@ function SideBar() {
       className={styles.sidebar}
       style={open ? { width: "20%" } : { width: "5%" }}
     >
-      <nav>
+      <nav style={store.route.data == 'sign' ? {display:'none'} : {}}>
         <div className={styles.block}>
           <Tooltip title="Menu" placement="right">
             <span

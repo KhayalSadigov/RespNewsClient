@@ -10,6 +10,7 @@ import PhotosPage from "../Pages/PhotosPage";
 import MessagePage from "../Pages/MessagesPage";
 import NewsList from "../Components/NewsList";
 import NewsAdd from "../Components/NewsAdd";
+import SignPage from "../Pages/SignPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
         path: "messages",
         element: <MessagePage />,
       },
+      {
+        path:'sign',
+        element : <SignPage />
+      }
     ],
   },
 ]);

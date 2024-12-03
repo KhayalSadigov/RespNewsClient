@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+    width: 30%;
+    margin: 30px auto;
+  .btn {
+    color: white;
+    .circle{
+        color: white;
+        transform: scale(.3);
+    }
+  }
+}

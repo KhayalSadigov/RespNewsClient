@@ -12,6 +12,8 @@ import { DataContext } from "../../Context/dataContext";
 function Dashboard() {
   const store = useContext(DataContext)
   store.route.setData("dashboard");
+  if(!store.user.data.name)
+    window.location.replace('/sign')
   return (
     <div className={styles.dash}>
       <div className={styles.viewStats}>

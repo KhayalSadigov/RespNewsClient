@@ -36,7 +36,6 @@ function NewsAdd() {
     payload.lang = store.addLang.data;
     console.log(payload);
 
-    // Reset
     setContent("");
     setTitle("");
     setTags([]);
