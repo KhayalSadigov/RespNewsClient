@@ -12,10 +12,12 @@ import langCheck from "./language";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CircularProgress from "@mui/material/CircularProgress";
 import Base_Url from "../../Constant/base_url";
+import Button from "@mui/material/Button";
 
 function HomePage() {
   let store = useContext(DataContext);
   store.route.setData("home");
+  console.log(store.newspaper.data);
   // const handleScroll = () => {
   //   // Səhifənin yuxarıdan olan məsafəsini və ümumi hündürlüyünü yoxlayırıq
   //   const scrollTop = window.scrollY; // Yuxarıdan olan məsafə
@@ -180,18 +182,40 @@ function HomePage() {
             </div>
             <div className={styles.media}>
               <div className={styles.header}>
-                <div className={styles.content}>salam</div>
+                <div className={styles.content}>
+                  <span>Günün qəzeti</span>
+                  <span>Arxiv</span>
+                </div>
               </div>
               <div className={styles.paper}>
-                <a href={store.newspaper.data && Base_Url + store.newspaper.data[0].newspaperPdfUrl}  className={styles.content}>
+                <div className={styles.content}>
+                  <div className={styles.glass}>
+                    <Button className={styles.btn} variant="contained">
+                      PDF kimi oxu
+                    </Button>
+                    <Button
+                      className={styles.btn}
+                      color="warning"
+                      variant="contained"
+                    >
+                      Qəzet kimi vərəqlə
+                    </Button>
+                  </div>
                   <img
                     src={
                       store.newspaper.data &&
-                      Base_Url + store.newspaper.data[0].newspaperCoverUrl
+                      Base_Url + store.newspaper.data.newspaperCoverUrl
                     }
                     alt=""
                   />
-                </a>
+                </div>
+              </div>
+              <div className={styles.follow}>
+                <div className={styles.content}>
+                  <span>Bizi takip edin!</span>
+                  <input type="email" placeholder="Email" />
+                  <Button variant="contained">Abunə olun!</Button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import Base_Url from './../Constant/base_url' ;
+import Base_Url from "./../Constant/base_url";
 import { createContext, useEffect, useState } from "react";
 export const DataContext = createContext("");
 function DataProvider({ children }) {
@@ -29,12 +29,13 @@ function DataProvider({ children }) {
         setLoadPage(false);
       });
     // newspaper
-    axios.get(Base_Url + "/api/newspaper").then((res) => {
-      console.log(res.data)
-      setNewsPaper(res.data)
+    axios.get(Base_Url + "/api/newspaper/last").then((res) => {
+      console.log(res.data);
+      setNewsPaper(res.data);
+      console.log(newsPaper)
     });
   }, [dataPage, language]);
-
+  
   let store = {
     news: {
       data: news,
@@ -44,9 +45,9 @@ function DataProvider({ children }) {
       page: dataPage,
       setPage: setDataPage,
     },
-    newspaper :{
-      data : newsPaper,
-      setData : setNewsPaper
+    newspaper: {
+      data: newsPaper,
+      setData: setNewsPaper,
     },
     route: {
       data: page,
