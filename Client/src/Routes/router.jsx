@@ -4,6 +4,7 @@ import HomePage from "../Pages/HomePage";
 import ContactPage from "../Pages/ContactPage";
 import AboutPage from "../Pages/AboutPage";
 import CategoryPage from "../Pages/CategoryPage";
+import SearchPage from "../Pages/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "categories",
         element: <CategoryPage />,
+      },
+      {
+        path: "search/:language/:type/:query",
+        element: <SearchPage />,
       },
     ],
   },

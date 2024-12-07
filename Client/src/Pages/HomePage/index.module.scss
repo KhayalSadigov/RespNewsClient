@@ -279,7 +279,7 @@ main {
             border-radius: 5px;
             background-color: #fff;
             box-shadow: rgba(100, 100, 111, 0.079) 0px 7px 29px 0px;
-            span:nth-of-type(2){
+            span:nth-of-type(2) {
               color: grey;
               cursor: pointer;
             }
@@ -306,8 +306,11 @@ main {
               flex-direction: column;
               gap: 10px;
               filter: opacity(0);
-              .btn{
+              a {
                 width: 50%;
+                .btn {
+                  width: 100%;
+                }
               }
               &:hover {
                 background: #00000055;
@@ -316,7 +319,7 @@ main {
             }
           }
         }
-        .follow{
+        .follow {
           padding: 0 10px;
           width: 100%;
           .content {
@@ -325,16 +328,51 @@ main {
             flex-direction: column;
             width: 100%;
             padding: 15px 15px 15px 10px;
+            padding: 20px;
             border-radius: 5px;
             background-color: #fff;
             gap: 10px;
             box-shadow: rgba(100, 100, 111, 0.079) 0px 7px 29px 0px;
-            input{
-              padding: 10px ;
+            span {
+              text-align: center;
+            }
+          }
+          margin-top: 20px;
+        }
+        .dateSearch {
+          padding: 0 10px;
+          width: 100%;
+          .content {
+            display: flex;
+            overflow: hidden;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 15px 15px 10px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            gap: 10px;
+            box-shadow: rgba(100, 100, 111, 0.079) 0px 7px 29px 0px;
+            form{
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              gap: 10px;
+            }
+            span {
+              text-align: center;
+            }
+            input {
+              font-family: Arial, sans-serif;
+              font-size: 16px;
+              padding: 10px;
+              border: 2px solid #1976d2;
+              border-radius: 5px;
+              color: grey;
             }
           }
         }
       }
-    } 
+    }
   }
 }

@@ -12,6 +12,8 @@ function DataProvider({ children }) {
   const [dataPage, setDataPage] = useState(0); //Backend pagination
   const [loadPage, setLoadPage] = useState(false); // Pagination bitib yoxsa yox onu göstərir
   const [newsPaper, setNewsPaper] = useState(null);
+  const [searchType,setSearchType] = useState(null)
+  const [searchQuery,setSerachQuery] = useState(null)
   function setLang(x) {
     // Yeni dilə keçid edən zaman data və pagination sıfırlanmalıdır
     setLanguage(x);
@@ -32,10 +34,10 @@ function DataProvider({ children }) {
     axios.get(Base_Url + "/api/newspaper/last").then((res) => {
       console.log(res.data);
       setNewsPaper(res.data);
-      console.log(newsPaper)
+      console.log(newsPaper);
     });
   }, [dataPage, language]);
-  
+
   let store = {
     news: {
       data: news,
@@ -49,6 +51,7 @@ function DataProvider({ children }) {
       data: newsPaper,
       setData: setNewsPaper,
     },
+
     route: {
       data: page,
       setData: setPage,

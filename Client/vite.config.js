@@ -7,5 +7,13 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 2000,
+    strictPort: true, // Yalnız bir portda işləyir
+    fs: {
+      strict: true, // Yalnız icazə verilmiş fayllara girişə icazə ver
+    },
   },
+  build: {
+    sourcemap: false, // Source map-ləri deaktiv edir
+  }
+
 })
