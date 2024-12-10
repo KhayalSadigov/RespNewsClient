@@ -1,7 +1,7 @@
 const langCheck = {
   nav: {
     home: ["Ana Səhifə", "Home", "Главная"],
-    categories: ["Kategoriyalar", "Categories", "Категории"],
+    categories: ["Multimedia", "Multimedia", "Категории"],
     contact: ["Əlaqə", "Contact", "Контакт"],
     about: ["Haqqımızda", "About us", "О нас"],
     search: ["axtar", "search", "поиск"],

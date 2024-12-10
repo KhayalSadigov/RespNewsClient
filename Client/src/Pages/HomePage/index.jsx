@@ -14,6 +14,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Base_Url from "../../Constant/base_url";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import axios from "axios";
 
 function HomePage() {
   let store = useContext(DataContext);
@@ -123,7 +124,7 @@ function HomePage() {
           <div className={styles.content}>
             <div className={styles.allNews}>
               <div className={styles.header}>
-                <div className={styles.content}>Bütün xəbərlər</div>
+                <div className={styles.content}>{langCheck.allNews[store.lang.data]}</div>
               </div>
               <div className={styles.body}>
                 <div className={styles.bodyContent}>
@@ -159,7 +160,7 @@ function HomePage() {
                   {store.news.load ? (
                     <CircularProgress size={20} />
                   ) : (
-                    "show more"
+                    langCheck.showMore[store.lang.data]
                   )}
                 </div>
               </div>
@@ -182,7 +183,7 @@ function HomePage() {
                       target="_blank"
                     >
                       <Button className={styles.btn} variant="contained">
-                        PDF kimi oxu
+                        PDF kimi vərəqlə
                       </Button>
                     </a>
                     <a
@@ -216,7 +217,9 @@ function HomePage() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      location.replace(`/search/${store.lang.data}/date/${e.target.children[0].value}`)
+                      location.replace(
+                        `/search/${store.lang.data}/date/${e.target.children[0].value}`
+                      );
                     }}
                   >
                     <input type="date" required />
@@ -226,16 +229,50 @@ function HomePage() {
                   </form>
                 </div>
               </div>
+              <div className={styles.categories}>
+                <div className={styles.content}>
+                  <span className={styles.header}>Kateqoriyalar</span>
+                  {store.categories.data.map((e, i) => {
+                    return (
+                      <div onClick={()=>{
+                        location.replace(`/search/${store.lang.data}/category/${e.categoryId}`)
+                      }} key={i}>
+                        <img src={e.categoryCoverUrl} alt=""/>
+                        <div className={styles.glass}>
+                          <p>{e.categoryName}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
               <div className={styles.follow}>
                 <div className={styles.content}>
                   <span>Abunə ol! Xəbərləri ilk sən oxu!</span>
-                  <TextField
-                    id="outlined-basic"
-                    type="email"
-                    label="Email"
-                    variant="outlined"
-                  />
-                  <Button variant="contained">Abunə olun!</Button>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+
+                      axios
+                        .post(Base_Url + "/api/subscribers", {
+                          subEmail:
+                            e.target.children[0].children[1].children[0].value,
+                        })
+                        .then(() => {
+                          alert("Successfully");
+                        });
+                    }}
+                  >
+                    <TextField
+                      id="outlined-basic"
+                      type="email"
+                      label="Email"
+                      variant="outlined"
+                    />
+                    <Button type="submit" variant="contained">
+                      Abunə olun!
+                    </Button>
+                  </form>
                 </div>
               </div>
             </div>

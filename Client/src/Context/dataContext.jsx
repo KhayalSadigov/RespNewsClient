@@ -11,13 +11,13 @@ function DataProvider({ children }) {
   const [news, setNews] = useState([]); // Xəbər Dataları
   const [dataPage, setDataPage] = useState(0); //Backend pagination
   const [loadPage, setLoadPage] = useState(false); // Pagination bitib yoxsa yox onu göstərir
-  const [newsPaper, setNewsPaper] = useState(null);
-  const [searchType,setSearchType] = useState(null)
-  const [searchQuery,setSerachQuery] = useState(null)
+  const [newsPaper, setNewsPaper] = useState(null); // Ən son qəzet
+  const [categories, setCategories] = useState([]); // Kateqoriyalar
   function setLang(x) {
     // Yeni dilə keçid edən zaman data və pagination sıfırlanmalıdır
     setLanguage(x);
     setNews([]);
+    setCategories([]);
     setDataPage(0);
   }
 
@@ -36,6 +36,11 @@ function DataProvider({ children }) {
       setNewsPaper(res.data);
       console.log(newsPaper);
     });
+    axios
+      .get(Base_Url + `/api/category/language/${language + 1}`)
+      .then((res) => {
+        setCategories(res.data);
+      });
   }, [dataPage, language]);
 
   let store = {
@@ -47,11 +52,14 @@ function DataProvider({ children }) {
       page: dataPage,
       setPage: setDataPage,
     },
+    categories : {
+      data : categories,
+      setData : setCategories
+    },
     newspaper: {
       data: newsPaper,
       setData: setNewsPaper,
     },
-
     route: {
       data: page,
       setData: setPage,
