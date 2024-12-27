@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "./index.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../../Context/dataContext";
 import SearchIcon from "@mui/icons-material/Search";
 import langCheck from "./language";
@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 function Header() {
   let store = useContext(DataContext);
-
+  const navigate = useNavigate();
   return (
     <header>
       <div className={styles.logo}>
@@ -74,12 +74,12 @@ function Header() {
                 <li>
                   <Link
                     style={
-                      store.route.data == "categories"
+                      store.route.data == "multimedia"
                         ? { backgroundColor: "#1976D2", color: "white" }
                         : {}
                     }
                     className={styles.link}
-                    to={"/categories"}
+                    to={"/multimedia"}
                   >
                     {langCheck.nav.categories[store.lang.data]}
                   </Link>
@@ -111,7 +111,12 @@ function Header() {
                   </Link>
                 </li>
               </ul>
-              <form className={styles.search}>
+              <form onSubmit={(e)=>{
+                e.preventDefault() ;
+                e.target.children[0].value
+                navigate(`search/search/${e.target.children[0].value}`)
+                
+              }} className={styles.search}>
                 <input
                   type="text"
                   placeholder={langCheck.nav.search[store.lang.data]}

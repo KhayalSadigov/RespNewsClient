@@ -3,8 +3,9 @@ import MainRout from "../Pages/MainRout";
 import HomePage from "../Pages/HomePage";
 import ContactPage from "../Pages/ContactPage";
 import AboutPage from "../Pages/AboutPage";
-import CategoryPage from "../Pages/CategoryPage";
 import SearchPage from "../Pages/SearchPage";
+import NewsPage from "../Pages/NewsPage";
+import MultimediaPage from "../Pages/MultimediaPage";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +25,15 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: "categories",
-        element: <CategoryPage />,
+        path: "multimedia",
+        element: <MultimediaPage />,
       },
       {
-        path: "search/:language/:type/:query",
+        path: "news/:id",
+        element: <NewsPage />,
+      },
+      {
+        path: "search/:type/:query",
         element: <SearchPage />,
       },
     ],

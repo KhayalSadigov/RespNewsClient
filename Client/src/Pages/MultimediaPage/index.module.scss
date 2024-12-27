@@ -1,0 +1,81 @@
+.content {
+  padding: 0 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .youtube {
+    width: 65%;
+    @media only screen and (max-width: 620px) {
+      width: 100%;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 5px;
+    }
+  }
+  .inf {
+    padding: 0 20px;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media only screen and (max-width: 620px) {
+        margin-top: 20px;
+      width: 100%;
+      padding: 0;
+    }
+    div {
+      position: relative;
+      .glass {
+        width: 100%;
+        height: 99%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.286);
+        .icon {
+          color: white;
+          transform: scale(1.5);
+        }
+        filter: opacity(0);
+        transition: 0.2s;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+          filter: opacity(1);
+        }
+      }
+      width: 100%;
+      overflow: hidden;
+      img {
+        border-radius: 5px;
+        width: 100%;
+      }
+    }
+  }
+  .header {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+  }
+}
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.466);
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  img {
+    height: 100%;
+  }
+}

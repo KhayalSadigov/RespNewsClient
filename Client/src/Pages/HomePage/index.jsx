@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../Context/dataContext";
 import CardSkeleton from "../../Components/Skeleton";
 import styles from "./index.module.scss";
@@ -15,12 +15,20 @@ import Base_Url from "../../Constant/base_url";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import CategoryModal from "../../Components/CategoryModal";
 
 function HomePage() {
+  const navigate = useNavigate();
   let store = useContext(DataContext);
-  store.route.setData("home");
+  useEffect(() => {
+    store.route.setData("home");
+  }, []);
+  console.log(store.top.data)
   return (
     <main>
+      {/* For Category Modal */}
+      <CategoryModal />
       <section className={styles.hero}>
         <div className={styles.exchange}>
           <div className="container">
@@ -53,8 +61,8 @@ function HomePage() {
                       modules={[Pagination, Autoplay, Navigation]}
                       className={styles.sliderList}
                     >
-                      {store.news.data &&
-                        store.news.data.map((e, i) => {
+                      {store.slider.data &&
+                        store.slider.data.map((e, i) => {
                           if (
                             e.newsRating == 5 &&
                             e.newsLangId - 1 == store.lang.data
@@ -63,18 +71,21 @@ function HomePage() {
                               <SwiperSlide
                                 className={styles.swipperSlide}
                                 key={i}
+                                onClick={() => {
+                                  navigate(`news/${e.newsId}`);
+                                }}
                               >
                                 <div className={styles.glass}>
                                   <span>
                                     {e.newsDate && e.newsDate.slice(0, 10)}
                                   </span>
-                                  <h1>{e.newsTitle}</h1>
+                                  <h1>{e.newsTitle + " " + e.newsId}</h1>
                                 </div>
                                 <img
                                   src={
                                     e.newsPhotos.length != 0
-                                      ? e.newsPhotos[0].photoUrl
-                                      : "./../../../public/images/DefaultNewsCover.avif"
+                                      ? Base_Url + e.newsPhotos[0].photoUrl
+                                      : "./../../../public/images/DefaultPhoto.png"
                                   }
                                   alt={e.newsTitle}
                                 />
@@ -94,7 +105,13 @@ function HomePage() {
                         store.news.data.slice(0, 10).map((e, i) => {
                           if (store.lang.data == e.newsLangId - 1)
                             return (
-                              <div className={styles.listItem} key={i}>
+                              <div
+                                className={styles.listItem}
+                                key={i}
+                                onClick={() => {
+                                  navigate(`news/${e.newsId}`);
+                                }}
+                              >
                                 <div className={styles.content}>
                                   <div className={styles.glass}>
                                     <h4>{e.newsTitle}</h4>
@@ -102,8 +119,8 @@ function HomePage() {
                                   <img
                                     src={
                                       e.newsPhotos.length != 0
-                                        ? e.newsPhotos[0].photoUrl
-                                        : "./../../../public/images/LatestNewsCoverDefault.jpeg"
+                                        ? Base_Url + e.newsPhotos[0].photoUrl
+                                        : "./../../../public/images/DefaultPhoto.png"
                                     }
                                     alt=""
                                   />
@@ -124,36 +141,48 @@ function HomePage() {
           <div className={styles.content}>
             <div className={styles.allNews}>
               <div className={styles.header}>
-                <div className={styles.content}>{langCheck.allNews[store.lang.data]}</div>
+                <div className={styles.content}>
+                  {langCheck.allNews[store.lang.data]}
+                </div>
               </div>
               <div className={styles.body}>
                 <div className={styles.bodyContent}>
                   {store.news.data.length != 0 &&
-                    store.news.data.map((e, i) => {
-                      return (
-                        <div className={styles.card} key={i}>
-                          <div className={styles.cardContent}>
-                            <div className={styles.glass}>
-                              <span>{e.newsTitle}</span>
-                              <div className={styles.icon}>
-                                <NewspaperIcon fontSize="large" />
+                    store.news.data.map(
+                      (e, i) => {
+                        // if (e.newsRating != 5 && e.newsRating != 4) {
+                        return (
+                          <div
+                            className={styles.card}
+                            key={i}
+                            onClick={() => {
+                              navigate(`news/${e.newsId}`);
+                            }}
+                          >
+                            <div className={styles.cardContent}>
+                              <div className={styles.glass}>
+                                <span>{e.newsTitle}</span>
                               </div>
+                              <img
+                                src={
+                                  e.newsPhotos.length != 0
+                                    ? Base_Url + e.newsPhotos[0].photoUrl
+                                    : "./../../../public/images/DefaultPhoto.png"
+                                }
+                                alt=""
+                              />
                             </div>
-                            <img
-                              src="./../../../public/images/newsDefault.jpeg"
-                              alt=""
-                            />
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      }
+                      // }
+                    )}
                 </div>
               </div>
-              <div className={styles.more}>
+              <div className={styles.more} style={store.news.load == "end" ? { display: 'none' } : {}}>
                 <div
                   onClick={() => {
                     store.news.setPage(++store.news.page);
-                    console.log(store.news.page);
                   }}
                   className={styles.content}
                 >
@@ -164,12 +193,19 @@ function HomePage() {
                   )}
                 </div>
               </div>
+              <div className={styles.more} style={store.news.load == "end" ? {} : { display: 'none' }}>
+                <div className={styles.content}>
+                  Bütün xəbərlər bitdi
+                </div>
+              </div>
             </div>
             <div className={styles.media}>
               <div className={styles.header}>
                 <div className={styles.content}>
-                  <span>Günün qəzeti</span>
-                  <span>Arxiv</span>
+                  <span>
+                    {langCheck.newspaper.dailyNewsPaper[store.lang.data]}
+                  </span>
+                  <span>{langCheck.newspaper.archive[store.lang.data]}</span>
                 </div>
               </div>
               <div className={styles.paper}>
@@ -183,7 +219,7 @@ function HomePage() {
                       target="_blank"
                     >
                       <Button className={styles.btn} variant="contained">
-                        PDF kimi vərəqlə
+                        {langCheck.newspaper.likePdf[store.lang.data]}
                       </Button>
                     </a>
                     <a
@@ -198,7 +234,7 @@ function HomePage() {
                         color="warning"
                         variant="contained"
                       >
-                        Qəzet kimi vərəqlə
+                        {langCheck.newspaper.likeNewsPaper[store.lang.data]}
                       </Button>
                     </a>
                   </div>
@@ -211,33 +247,79 @@ function HomePage() {
                   />
                 </div>
               </div>
+              <div className={styles.topNews}>
+                <div className={styles.content}>
+                  <div className={styles.header}>
+                    Ən çox oxunan xəbərlər
+                  </div>
+                  {
+                    store.top.data.map((e, i) => {
+                      return (
+                        <div key={i} className={styles.topCard} onClick={() => {
+                          navigate(`news/${e.newsId}`);
+                        }}>
+                          <div className={styles.image}>
+                            <img src={
+                              e.newsPhotos.length != 0
+                                ? (Base_Url+e.newsPhotos[0].photoUrl)
+                                : "./../../../public/images/DefaultPhoto.png"
+                            } alt="" />
+                          </div>
+                          <div className={styles.body}>
+                            <p className={styles.title}>{e.newsTitle}</p>
+                            <p className={styles.date}>{e.newsDate.slice(0, 10)}</p>
+                          </div>
+                        </div>
+                      )
+                    })
+                  }
+                </div>
+              </div>
               <div className={styles.dateSearch}>
                 <div className={styles.content}>
-                  <span>İstədiyin tarixə uyğun xəbərləri tap!</span>
+                  <span>{langCheck.dateSeacrh.date[store.lang.data]}</span>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      location.replace(
-                        `/search/${store.lang.data}/date/${e.target.children[0].value}`
+                      navigate(
+                        `search/date/${e.target.children[0].value}`
                       );
                     }}
                   >
                     <input type="date" required />
                     <Button type="submit" variant="contained">
-                      Axtar
+                      {langCheck.dateSeacrh.search[store.lang.data]}
                     </Button>
                   </form>
                 </div>
               </div>
+              <div className={styles.youtube}>
+                <div className={styles.content}>
+                  <iframe
+                    src={"https://www.youtube.com/embed/" + "x34pet0jD1w"}
+                    frameBorder="0"
+                  ></iframe>
+                </div>
+              </div>
               <div className={styles.categories}>
                 <div className={styles.content}>
-                  <span className={styles.header}>Kateqoriyalar</span>
-                  {store.categories.data.map((e, i) => {
+                  <span className={styles.header}>
+                    <span>{langCheck.categories.span[store.lang.data]}</span>
+                    <span className={styles.btn} onClick={() => {
+                      store.categories.setModal(true)
+                    }}>{langCheck.categories.button[store.lang.data]}</span>
+                  </span>
+                  {store.categories.data.slice(0, 3).map((e, i) => {
                     return (
-                      <div onClick={()=>{
-                        location.replace(`/search/${store.lang.data}/category/${e.categoryId}`)
-                      }} key={i}>
-                        <img src={e.categoryCoverUrl} alt=""/>
+                      <div
+                        onClick={() => {
+                          navigate(
+                            `search/category/${e.categoryId}`
+                          );
+                        }}
+                        key={i}
+                      >
+                        <img src={e.categoryCoverUrl} alt="" />
                         <div className={styles.glass}>
                           <p>{e.categoryName}</p>
                         </div>
@@ -248,7 +330,7 @@ function HomePage() {
               </div>
               <div className={styles.follow}>
                 <div className={styles.content}>
-                  <span>Abunə ol! Xəbərləri ilk sən oxu!</span>
+                  <span>{langCheck.subscribe.header[store.lang.data]}</span>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -266,11 +348,11 @@ function HomePage() {
                     <TextField
                       id="outlined-basic"
                       type="email"
-                      label="Email"
+                      label={langCheck.subscribe.email[store.lang.data]}
                       variant="outlined"
                     />
                     <Button type="submit" variant="contained">
-                      Abunə olun!
+                      {langCheck.subscribe.subs[store.lang.data]}
                     </Button>
                   </form>
                 </div>
