@@ -13,8 +13,8 @@ function SearchPage() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const [moreLoader, setMoreLoader] = useState(false)
-  let { type, query } = useParams();
   const navigate = useNavigate();
+  let { type, query } = useParams();
   useEffect(() => {
     store.route.setData("search");
   }, []);
@@ -66,14 +66,23 @@ function SearchPage() {
             >
               <div className={styles.content}>
                 <div className={styles.glass}>{e.newsTitle}</div>
-                <img
-                  src={
-                    e.newsPhotos.length != 0 && e.newsPhotos.length != 0
-                      ? Base_Url + e.newsPhotos[0].photoUrl
-                      : "./../../../public/images/DefaultPhoto.png"
-                  }
-                  alt=""
-                />
+                {
+                  type == 'date' ? <img
+                    src={
+                      e.photoUrl.length != 0 && e.photoUrl.length != 0
+                        ? Base_Url + e.photoUrl[0]
+                        : "./../../../public/images/DefaultPhoto.png"
+                    }
+                    alt=""
+                  /> : <img
+                    src={
+                      e.newsPhotos[0].photoUrl.length != 0 && e.newsPhotos[0].photoUrl.length != 0
+                        ? Base_Url + e.newsPhotos[0].photoUrl
+                        : "./../../../public/images/DefaultPhoto.png"
+                    }
+                    alt=""
+                  />
+                }
               </div>
             </div>
           );

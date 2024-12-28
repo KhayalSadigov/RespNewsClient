@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import styles from './index.module.scss'
 import { DataContext } from '../../Context/dataContext';
+import { useNavigate } from 'react-router-dom';
 
 function CategoryModal() {
     let store = useContext(DataContext);
     console.log(store.categories.data)
-    
+    const navigate = useNavigate()
     return (
         <aside className={styles.modal}>
             <div className={styles.glass} onClick={() => {
@@ -14,17 +15,21 @@ function CategoryModal() {
 
             </div>
             <div className={styles.categories} style={store.categories.modal ? { right: '0' } : {}}>
-                <div className={styles.closeBtn} onClick={()=>{
+                <div className={styles.closeBtn} onClick={() => {
                     store.categories.setModal(false)
                 }}>Bağla</div>
                 {store.categories.data.map((e, i) => {
-                    return(
-                        <div key={i} className={styles.card}>
-                        <img src={e.categoryCoverUrl} alt={e.categoryName} />
-                        <div className={styles.cardGlass}>
-                            <span>{e.categoryName}</span>
+                    return (
+                        <div key={i} onClick={() => {
+                            navigate(
+                                `search/category/${e.categoryId}`
+                            );
+                        }} className={styles.card}>
+                            <img src={e.categoryCoverUrl} alt={e.categoryName} />
+                            <div className={styles.cardGlass}>
+                                <span>{e.categoryName}</span>
+                            </div>
                         </div>
-                    </div>
                     )
                 })}
             </div>

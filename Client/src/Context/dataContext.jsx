@@ -62,6 +62,7 @@ function DataProvider({ children }) {
     const fetchNewsPaper = async () => {
       const res = await axios.get(Base_Url + "/api/newspaper/last");
       setNewsPaper(res.data);
+      console.log(res.data)
     };
     fetchNewsPaper();
   }, []);
@@ -89,7 +90,7 @@ function DataProvider({ children }) {
   useEffect(() => {
     const fetchSubtitles = async () => {
       const res = await axios.get(
-        Base_Url + `/api/news/rating/5/${language + 1}`
+        Base_Url + `/api/news/rating/4/${language + 1}`
       );
       setSubtitles(res.data);
     };

@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import langCheck from "./language";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import CircularProgress from "@mui/material/CircularProgress";
 import Base_Url from "../../Constant/base_url";
 import Button from "@mui/material/Button";
@@ -24,7 +23,15 @@ function HomePage() {
   useEffect(() => {
     store.route.setData("home");
   }, []);
-  console.log(store.top.data)
+  function getYouTubeEmbedLink(url) {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([\w-]{11})/;
+    const match = url.match(regex);
+    if (match) {
+      const videoId = match[1];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return null; // URL düzgün formatda deyilsə, null qaytarır
+  }
   return (
     <main>
       {/* For Category Modal */}
@@ -63,34 +70,31 @@ function HomePage() {
                     >
                       {store.slider.data &&
                         store.slider.data.map((e, i) => {
-                          if (
-                            e.newsRating == 5 &&
-                            e.newsLangId - 1 == store.lang.data
-                          )
-                            return (
-                              <SwiperSlide
-                                className={styles.swipperSlide}
-                                key={i}
-                                onClick={() => {
-                                  navigate(`news/${e.newsId}`);
-                                }}
-                              >
-                                <div className={styles.glass}>
-                                  <span>
-                                    {e.newsDate && e.newsDate.slice(0, 10)}
-                                  </span>
-                                  <h1>{e.newsTitle + " " + e.newsId}</h1>
-                                </div>
-                                <img
-                                  src={
-                                    e.newsPhotos.length != 0
-                                      ? Base_Url + e.newsPhotos[0].photoUrl
-                                      : "./../../../public/images/DefaultPhoto.png"
-                                  }
-                                  alt={e.newsTitle}
-                                />
-                              </SwiperSlide>
-                            );
+                          return (
+                            <SwiperSlide
+                              className={styles.swipperSlide}
+                              key={i}
+                              onClick={() => {
+                                navigate(`news/${e.newsId}`);
+                              }}
+                            >
+                              <div className={styles.glass}>
+                                <h1>{e.newsTitle}</h1>
+                                <br />
+                                <span>
+                                  {e.newsDate && e.newsDate.slice(0, 10)}
+                                </span>
+                              </div>
+                              <img
+                                src={
+                                  e.newsPhotos.length != 0
+                                    ? Base_Url + e.newsPhotos[0].photoUrl
+                                    : "./../../../public/images/DefaultPhoto.png"
+                                }
+                                alt={e.newsTitle}
+                              />
+                            </SwiperSlide>
+                          );
                         })}
                     </Swiper>
                   </div>
@@ -103,30 +107,30 @@ function HomePage() {
                     <div className={styles.list}>
                       {store.news.data.lenght != 0 &&
                         store.news.data.slice(0, 10).map((e, i) => {
-                          if (store.lang.data == e.newsLangId - 1)
-                            return (
-                              <div
-                                className={styles.listItem}
-                                key={i}
-                                onClick={() => {
-                                  navigate(`news/${e.newsId}`);
-                                }}
-                              >
-                                <div className={styles.content}>
-                                  <div className={styles.glass}>
-                                    <h4>{e.newsTitle}</h4>
-                                  </div>
-                                  <img
-                                    src={
-                                      e.newsPhotos.length != 0
-                                        ? Base_Url + e.newsPhotos[0].photoUrl
-                                        : "./../../../public/images/DefaultPhoto.png"
-                                    }
-                                    alt=""
-                                  />
+                          return (
+                            <div
+                              className={styles.listItem}
+                              key={i}
+                              onClick={() => {
+
+                                navigate(`news/${e.newsId}`);
+                              }}
+                            >
+                              <div className={styles.content}>
+                                <div className={styles.glass}>
+                                  <h4>{e.newsTitle}</h4>
                                 </div>
+                                <img
+                                  src={
+                                    e.newsPhotos.length != 0
+                                      ? Base_Url + e.newsPhotos[0].photoUrl
+                                      : "./../../../public/images/DefaultPhoto.png"
+                                  }
+                                  alt=""
+                                />
                               </div>
-                            );
+                            </div>
+                          );
                         })}
                     </div>
                   </div>
@@ -148,32 +152,32 @@ function HomePage() {
               <div className={styles.body}>
                 <div className={styles.bodyContent}>
                   {store.news.data.length != 0 &&
-                    store.news.data.map(
+                    store.news.data.slice(11 , store.news.data.length).map(
                       (e, i) => {
-                        // if (e.newsRating != 5 && e.newsRating != 4) {
-                        return (
-                          <div
-                            className={styles.card}
-                            key={i}
-                            onClick={() => {
-                              navigate(`news/${e.newsId}`);
-                            }}
-                          >
-                            <div className={styles.cardContent}>
-                              <div className={styles.glass}>
-                                <span>{e.newsTitle}</span>
+                        if (e.newsRating != 5 && e.newsRating != 4)
+                          return (
+                            <div
+                              className={styles.card}
+                              key={i}
+                              onClick={() => {
+                                navigate(`news/${e.newsId}`);
+                              }}
+                            >
+                              <div className={styles.cardContent}>
+                                <div className={styles.glass}>
+                                  <span>{e.newsTitle}</span>
+                                </div>
+                                <img
+                                  src={
+                                    e.newsPhotos.length != 0
+                                      ? Base_Url + e.newsPhotos[0].photoUrl
+                                      : "./../../../public/images/DefaultPhoto.png"
+                                  }
+                                  alt=""
+                                />
                               </div>
-                              <img
-                                src={
-                                  e.newsPhotos.length != 0
-                                    ? Base_Url + e.newsPhotos[0].photoUrl
-                                    : "./../../../public/images/DefaultPhoto.png"
-                                }
-                                alt=""
-                              />
                             </div>
-                          </div>
-                        );
+                          );
                       }
                       // }
                     )}
@@ -253,7 +257,7 @@ function HomePage() {
                     Ən çox oxunan xəbərlər
                   </div>
                   {
-                    store.top.data.map((e, i) => {
+                    store.top.data.slice(0, 5).map((e, i) => {
                       return (
                         <div key={i} className={styles.topCard} onClick={() => {
                           navigate(`news/${e.newsId}`);
@@ -261,7 +265,7 @@ function HomePage() {
                           <div className={styles.image}>
                             <img src={
                               e.newsPhotos.length != 0
-                                ? (Base_Url+e.newsPhotos[0].photoUrl)
+                                ? (Base_Url + e.newsPhotos[0].photoUrl)
                                 : "./../../../public/images/DefaultPhoto.png"
                             } alt="" />
                           </div>
@@ -296,7 +300,7 @@ function HomePage() {
               <div className={styles.youtube}>
                 <div className={styles.content}>
                   <iframe
-                    src={"https://www.youtube.com/embed/" + "x34pet0jD1w"}
+                    src={store.youtube.data.length != 0 ? getYouTubeEmbedLink(store.youtube.data[0].videoUrl) : "about:blank"}
                     frameBorder="0"
                   ></iframe>
                 </div>
@@ -334,7 +338,6 @@ function HomePage() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-
                       axios
                         .post(Base_Url + "/api/subscribers", {
                           subEmail:

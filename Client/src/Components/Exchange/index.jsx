@@ -21,6 +21,7 @@ const CurrencyRate = () => {
       }
     });
   }, []);
+  let date = (new Date()).getDate()
 
   return (
     <div>
@@ -35,6 +36,7 @@ const CurrencyRate = () => {
           <p>1 TRY = {(1 / rate.TRY).toFixed(3)} AZN |</p>
           {store.subtitles.data &&
             store.subtitles.data.map((e, i) => {
+              if(e.newsDate.slice(8,10) == date)
               return (
                 <p
                 className={styles.news}
