@@ -14,10 +14,10 @@ function MultimediaPage() {
   useEffect(() => {
     store.route.setData('multimedia')
 
-    axios.get("https://localhost:44314/api/infographics/0").then((res) => {
+    axios.get(Base_Url + "/api/infographics/0").then((res) => {
       setInf(res.data)
     })
-    axios.get("https://localhost:44314/api/youtube/videos/0").then((res) => {
+    axios.get(Base_Url + "/api/youtube/videos/0").then((res) => {
       setVideo(res.data)
     })
   }, [])
@@ -48,7 +48,7 @@ function MultimediaPage() {
                     {langCheck.video[store.lang.data]}
                   </div>
                   {
-                    video.map((e, i) => {
+                    video.length !=0 && video.map((e, i) => {
                       return (
                         <iframe key={i} src={getYouTubeEmbedLink(e.videoUrl)} frameBorder="0">
 

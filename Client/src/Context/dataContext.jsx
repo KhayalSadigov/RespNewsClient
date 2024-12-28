@@ -30,6 +30,7 @@ function DataProvider({ children }) {
   useEffect(() => {
     const fetchYoutube = async () => {
       const res = await axios.get(Base_Url + `/api/youtube/videos/${youtubePage}`);
+      console.log(res.data)
       setYoutube([...youtube, ...res.data]);
     };
     fetchYoutube();
