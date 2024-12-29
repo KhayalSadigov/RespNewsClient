@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import styles from './index.module.scss'
 import { DataContext } from '../../Context/dataContext';
 import { useNavigate } from 'react-router-dom';
+import Base_Url from '../../Constant/base_url';
 
 function CategoryModal() {
     let store = useContext(DataContext);
@@ -25,7 +26,7 @@ function CategoryModal() {
                                 `search/category/${e.categoryId}`
                             );
                         }} className={styles.card}>
-                            <img src={e.categoryCoverUrl} alt={e.categoryName} />
+                            <img src={Base_Url + e.categoryCoverUrl} alt={e.categoryName} />
                             <div className={styles.cardGlass}>
                                 <span>{e.categoryName}</span>
                             </div>

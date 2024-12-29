@@ -106,7 +106,7 @@ function NewsPage() {
                       <img src={
                         e.newsPhotos.length != 0 && e.newsPhotos.length != 0
                           ? Base_Url + e.newsPhotos[0].photoUrl
-                          : "./../../../public/images/DefaultPhoto.png"
+                          : "./../images/DefaultPhoto.png"
                       } alt="" />
                     </div>
                   </div>

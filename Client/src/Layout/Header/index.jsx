@@ -16,13 +16,13 @@ function Header() {
         <div className={styles.responseLogo}>
             <div className={styles.photo}>
               <img
-                src="./../../../public/images/LogoPhoto.jpeg"
+                src="./../images/LogoPhoto.jpeg"
                 alt="Haydar Aliyev"
               />
             </div>
             <div className={styles.photo}>
               <img
-                src="./../../../public/images/LogoPhoto2.jpeg"
+                src="./../images/LogoPhoto2.jpeg"
                 alt="Ilham Aliyev"
               />
             </div>
@@ -30,16 +30,16 @@ function Header() {
           <div className={styles.content}>
             <div className={styles.photo}>
               <img
-                src="./../../../public/images/LogoPhoto.jpeg"
+                src="./../images/LogoPhoto.jpeg"
                 alt="Haydar Aliyev"
               />
             </div>
             <div className={styles.name}>
-              <img src="./../../../public/images/Logo.png" alt="" />
+              <img src="./../images/Logo.png" alt="" />
             </div>
             <div className={styles.photo}>
               <img
-                src="./../../../public/images/LogoPhoto2.jpeg"
+                src="./../images/LogoPhoto2.jpeg"
                 alt="Ilham Aliyev"
               />
             </div>

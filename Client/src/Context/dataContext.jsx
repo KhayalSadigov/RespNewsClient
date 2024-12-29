@@ -20,6 +20,7 @@ function DataProvider({ children }) {
   const [slider, setSlider] = useState([]);
   const [subtitles, setSubtitles] = useState([]);
   const [top, setTop] = useState([])
+  const [links, setLinks] = useState([])
   function setLang(x) {
     setLanguage(x);
     setNews([]);
@@ -63,9 +64,17 @@ function DataProvider({ children }) {
     const fetchNewsPaper = async () => {
       const res = await axios.get(Base_Url + "/api/newspaper/last");
       setNewsPaper(res.data);
-      console.log(res.data)
     };
     fetchNewsPaper();
+  }, []);
+
+  useEffect(() => {
+    const fetchLinks = async () => {
+      const res = await axios.get(Base_Url + "/api/links");
+      setLinks(res.data);
+      console.log(links)
+    };
+    fetchLinks();
   }, []);
 
   useEffect(() => {
@@ -99,6 +108,10 @@ function DataProvider({ children }) {
   }, [language]);
 
   let store = {
+    links: {
+      data: links,
+      setData: setLinks
+    },
     top: {
       data: top,
       setData: setTop
@@ -128,8 +141,8 @@ function DataProvider({ children }) {
     categories: {
       data: categories,
       setData: setCategories,
-      modal : categoryModal,
-      setModal : setCategoryModal
+      modal: categoryModal,
+      setModal: setCategoryModal
     },
     newspaper: {
       data: newsPaper,

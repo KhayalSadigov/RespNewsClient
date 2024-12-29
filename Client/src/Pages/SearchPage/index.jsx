@@ -29,6 +29,8 @@ function SearchPage() {
         .then((res) => {
           setData([...data, ...res.data]);
           setMoreLoader(false)
+        }).catch(()=>{
+            setMoreLoader(null)
         });
     }
 
@@ -38,8 +40,11 @@ function SearchPage() {
         .then((res) => {
           setData([...data, ...res.data]);
           setMoreLoader(false)
-
-        });
+          if(res.data)
+            setMoreLoader(null)
+        }).catch(()=>{
+          setMoreLoader(null)
+      });
     }
 
     if (type == "search") {
@@ -48,7 +53,11 @@ function SearchPage() {
         .then((res) => {
           setData([...data, ...res.data]);
           setMoreLoader(false)
-        });
+          if(res.data)
+            setMoreLoader(null)
+        }).catch(()=>{
+          setMoreLoader(null)
+      });
     }
   }, [store.lang.data, type, query, page]);
   return (
@@ -71,14 +80,14 @@ function SearchPage() {
                     src={
                       e.photoUrl.length != 0 && e.photoUrl.length != 0
                         ? Base_Url + e.photoUrl[0]
-                        : "./../../../public/images/DefaultPhoto.png"
+                        : "./../images/DefaultPhoto.png"
                     }
                     alt=""
                   /> : <img
                     src={
                       e.newsPhotos[0].photoUrl.length != 0 && e.newsPhotos[0].photoUrl.length != 0
                         ? Base_Url + e.newsPhotos[0].photoUrl
-                        : "./../../../public/images/DefaultPhoto.png"
+                        : "./../images/DefaultPhoto.png"
                     }
                     alt=""
                   />
@@ -88,7 +97,7 @@ function SearchPage() {
           );
         })}
         <div className={styles.showMore}>
-          <div style={type == 'date' ? { display: 'none' } : {}} onClick={() => {
+          <div style={type == 'date'  ? { display: 'none' } : {}} onClick={() => {
             setPage(page + 1)
             setMoreLoader(true)
           }} className={styles.content}>

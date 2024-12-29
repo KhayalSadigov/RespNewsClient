@@ -21,8 +21,8 @@ const langCheck = {
     search: ["Axtar", "Seacrh", "Поиск"],
   },
   categories: {
-    span : ["Kateqoriyalar", "Categories", "Категории"],
-    button : ["Hamısına bax" , "See all" , "Посмотреть все" ]
+    span: ["Kateqoriyalar", "Categories", "Категории"],
+    button: ["Hamısına bax", "See all", "Посмотреть все"],
   },
   subscribe: {
     header: [
@@ -30,9 +30,10 @@ const langCheck = {
       "Read the news first!",
       "Читайте новости первыми!",
     ],
-    email: ["E-poçt","E-mail","Э-почта"],
+    email: ["E-poçt", "E-mail", "Э-почта"],
     subs: ["Abunə ol!", "Subscribe!", "Подписаться!"],
   },
+  links: ["Əlavə keçidlər", "Additional links", "Дополнительные ссылки"],
 };
 
 export default langCheck;

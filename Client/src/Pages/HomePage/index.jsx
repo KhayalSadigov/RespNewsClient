@@ -62,7 +62,7 @@ function HomePage() {
                         dynamicBullets: true,
                       }}
                       autoplay={{
-                        delay: 2000,
+                        delay: 2500,
                         disableOnInteraction: false,
                       }}
                       modules={[Pagination, Autoplay, Navigation]}
@@ -89,7 +89,7 @@ function HomePage() {
                                 src={
                                   e.newsPhotos.length != 0
                                     ? Base_Url + e.newsPhotos[0].photoUrl
-                                    : "./../../../public/images/DefaultPhoto.png"
+                                    : "./../images/DefaultPhoto.png"
                                 }
                                 alt={e.newsTitle}
                               />
@@ -124,7 +124,7 @@ function HomePage() {
                                   src={
                                     e.newsPhotos.length != 0
                                       ? Base_Url + e.newsPhotos[0].photoUrl
-                                      : "./../../../public/images/DefaultPhoto.png"
+                                      : "./../images/DefaultPhoto.png"
                                   }
                                   alt=""
                                 />
@@ -152,7 +152,7 @@ function HomePage() {
               <div className={styles.body}>
                 <div className={styles.bodyContent}>
                   {store.news.data.length != 0 &&
-                    store.news.data.slice(11 , store.news.data.length).map(
+                    store.news.data.slice(11, store.news.data.length).map(
                       (e, i) => {
                         if (e.newsRating != 5 && e.newsRating != 4)
                           return (
@@ -171,7 +171,7 @@ function HomePage() {
                                   src={
                                     e.newsPhotos.length != 0
                                       ? Base_Url + e.newsPhotos[0].photoUrl
-                                      : "./../../../public/images/DefaultPhoto.png"
+                                      : "./../images/DefaultPhoto.png"
                                   }
                                   alt=""
                                 />
@@ -266,7 +266,7 @@ function HomePage() {
                             <img src={
                               e.newsPhotos.length != 0
                                 ? (Base_Url + e.newsPhotos[0].photoUrl)
-                                : "./../../../public/images/DefaultPhoto.png"
+                                : "./../images/DefaultPhoto.png"
                             } alt="" />
                           </div>
                           <div className={styles.body}>
@@ -323,13 +323,56 @@ function HomePage() {
                         }}
                         key={i}
                       >
-                        <img src={e.categoryCoverUrl} alt="" />
+                        <img src={Base_Url + e.categoryCoverUrl} alt="" />
                         <div className={styles.glass}>
                           <p>{e.categoryName}</p>
                         </div>
                       </div>
                     );
                   })}
+                </div>
+              </div>
+              <div className={styles.links}>
+                <div className={styles.content}>
+                  <div className={styles.header}>
+                    <div className={styles.content}>
+                      {langCheck.links[store.lang.data]}
+                    </div>
+                  </div>
+                  <Swiper
+                    navigation={true}
+                    pagination={{
+                      dynamicBullets: true,
+                    }}
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+                    modules={[Pagination, Autoplay, Navigation]}
+                    className={styles.linkSlider}
+                  >
+
+                    {store.links.data &&
+                      store.links.data.map((e, i) => {
+                        return (
+                          <SwiperSlide
+                            className={styles.linkSlide}
+                            key={i}
+                          >
+                            <a href={e.linkUrl} target="_blank">
+                              <div className={styles.glass}>
+                                {e.linkName}
+                              </div>
+                              <img src={
+                                e.linkCoverUrl
+                                  ? (Base_Url + e.linkCoverUrl)
+                                  : "./../images/DefaultPhoto.png"
+                              } alt="" />
+                            </a>
+                          </SwiperSlide>
+                        );
+                      })}
+                  </Swiper>
                 </div>
               </div>
               <div className={styles.follow}>
@@ -360,6 +403,7 @@ function HomePage() {
                   </form>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
