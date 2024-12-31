@@ -15,12 +15,13 @@ function DataProvider({ children }) {
   const [newsPaper, setNewsPaper] = useState(null); // Ən son qəzet
   const [categories, setCategories] = useState([]); // Kateqoriyalar
   const [categoryModal, setCategoryModal] = useState(false)
-  const [youtube, setYoutube] = useState([]);
+  const [youtube, setYoutube] = useState([]); // Youtube data
   const [youtubePage, setYoutubePage] = useState(0); // Youtube Pagination
-  const [slider, setSlider] = useState([]);
-  const [subtitles, setSubtitles] = useState([]);
-  const [top, setTop] = useState([])
-  const [links, setLinks] = useState([])
+  const [slider, setSlider] = useState([]); // Slider data
+  const [subtitles, setSubtitles] = useState([]); // Subtitles data
+  const [top, setTop] = useState([]); // Top news
+  const [links, setLinks] = useState([]); // External links
+
   function setLang(x) {
     setLanguage(x);
     setNews([]);
@@ -29,83 +30,57 @@ function DataProvider({ children }) {
   }
 
   useEffect(() => {
-    const fetchYoutube = async () => {
-      const res = await axios.get(Base_Url + `/api/youtube/videos/${youtubePage}`);
-      console.log(res.data)
-      setYoutube([...youtube, ...res.data]);
-    };
-    fetchYoutube();
-  }, [youtubePage]);
+    const fetchData = async () => {
+      try {
+        // Fetching multiple resources in parallel using Promise.all
+        const [
+          topNews,
+          youtubeVideos,
+          latestNewspaper,
+          allCategories,
+          sliderData,
+          subtitleData,
+          externalLinks
+        ] = await Promise.all([
+          axios.get(Base_Url + `/api/news/topMonth/language/${language + 1}`),
+          axios.get(Base_Url + `/api/youtube/videos/${youtubePage}`),
+          axios.get(Base_Url + "/api/newspaper/last"),
+          axios.get(Base_Url + `/api/category/language/${language + 1}`),
+          axios.get(Base_Url + `/api/news/rating/5/${language + 1}`),
+          axios.get(Base_Url + `/api/news/rating/4/${language + 1}`),
+          axios.get(Base_Url + "/api/links")
+        ]);
 
-  useEffect(() => {
-    const fetchTop = async () => {
-      const res = await axios.get(Base_Url + `/api/news/topMonth/language/${language + 1}`)
-      setTop(res.data)
-    }
-    fetchTop()
-  }, [language])
+        setTop(topNews.data);
+        setYoutube((prev) => [...prev, ...youtubeVideos.data]);
+        setNewsPaper(latestNewspaper.data);
+        setCategories(allCategories.data);
+        setSlider(sliderData.data);
+        setSubtitles(subtitleData.data);
+        setLinks(externalLinks.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [language, youtubePage]); // Effect will run on language or youtubePage change
 
   useEffect(() => {
     const fetchNews = async () => {
       setLoadPage(true);
-      const res = await axios.get(
-        Base_Url + `/api/news/language/${language + 1}/${dataPage}`
-      );
-
-      setNews((prev) => [...prev, ...res.data]);
-      setLoadPage(false);
-      if (res.data.length == 0)
-        setLoadPage("end")
+      try {
+        const res = await axios.get(Base_Url + `/api/news/language/${language + 1}/${dataPage}`);
+        setNews((prev) => [...prev, ...res.data]);
+        setLoadPage(false);
+        if (res.data.length === 0) setLoadPage("end");
+      } catch (error) {
+        setLoadPage(false);
+        console.error("Error fetching news:", error);
+      }
     };
     fetchNews();
-  }, [dataPage, language]);
-
-  useEffect(() => {
-    const fetchNewsPaper = async () => {
-      const res = await axios.get(Base_Url + "/api/newspaper/last");
-      setNewsPaper(res.data);
-    };
-    fetchNewsPaper();
-  }, []);
-
-  useEffect(() => {
-    const fetchLinks = async () => {
-      const res = await axios.get(Base_Url + "/api/links");
-      setLinks(res.data);
-      console.log(links)
-    };
-    fetchLinks();
-  }, []);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await axios.get(
-        Base_Url + `/api/category/language/${language + 1}`
-      );
-      setCategories(res.data);
-    };
-    fetchCategories();
-  }, [language]);
-
-  useEffect(() => {
-    const fetchSlider = async () => {
-      const res = await axios.get(
-        Base_Url + `/api/news/rating/5/${language + 1}`
-      );
-      setSlider(res.data);
-    };
-    fetchSlider();
-  }, [language]);
-
-  useEffect(() => {
-    const fetchSubtitles = async () => {
-      const res = await axios.get(
-        Base_Url + `/api/news/rating/4/${language + 1}`
-      );
-      setSubtitles(res.data);
-    };
-    fetchSubtitles();
-  }, [language]);
+  }, [dataPage, language]); // Effect will run on dataPage or language change
 
   let store = {
     links: {
