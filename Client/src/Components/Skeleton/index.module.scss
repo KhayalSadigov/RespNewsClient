@@ -3,7 +3,9 @@
     flex-wrap: wrap;
     width: 90%;
     margin: 0 auto;
-    
+    @media only screen and (min-width: 1650px) {
+          width: 70%;
+      }
     .card{
         padding: 10px;
         width: calc(100% / 4);

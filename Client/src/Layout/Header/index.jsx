@@ -13,7 +13,7 @@ function Header() {
     <header>
       <div className={styles.logo}>
         <div className="container">
-        <div className={styles.responseLogo}>
+          <div className={styles.responseLogo}>
             <div className={styles.photo}>
               <img
                 src="./../images/LogoPhoto.jpeg"
@@ -81,7 +81,7 @@ function Header() {
                     className={styles.link}
                     to={"/multimedia"}
                   >
-                    {langCheck.nav.categories[store.lang.data]}
+                    {langCheck.nav.multimedia[store.lang.data]}
                   </Link>
                 </li>
                 <li>
@@ -99,6 +99,16 @@ function Header() {
                 </li>
                 <li>
                   <Link
+                    className={styles.link}
+                    onClick={() => {
+                      store.categories.setModal(true)
+                    }}
+                  >
+                    {langCheck.nav.categories[store.lang.data]}
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     style={
                       store.route.data == "about"
                         ? { backgroundColor: "#1976D2", color: "white" }
@@ -110,12 +120,13 @@ function Header() {
                     {langCheck.nav.about[store.lang.data]}
                   </Link>
                 </li>
+
               </ul>
-              <form onSubmit={(e)=>{
-                e.preventDefault() ;
+              <form onSubmit={(e) => {
+                e.preventDefault();
                 e.target.children[0].value
                 navigate(`search/search/${e.target.children[0].value}`)
-                
+
               }} className={styles.search}>
                 <input
                   type="text"
