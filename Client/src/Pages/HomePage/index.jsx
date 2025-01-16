@@ -254,7 +254,7 @@ function HomePage() {
               <div className={styles.topNews}>
                 <div className={styles.content}>
                   <div className={styles.header}>
-                    Ən çox oxunan xəbərlər
+                    {langCheck.topNews[store.lang.data]}
                   </div>
                   {
                     store.top.data.slice(0, 5).map((e, i) => {

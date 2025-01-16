@@ -34,6 +34,7 @@ const langCheck = {
     subs: ["Abunə ol!", "Subscribe!", "Подписаться!"],
   },
   links: ["Əlavə keçidlər", "Additional links", "Дополнительные ссылки"],
+  topNews : ["Ən çox oxunan xəbərlər" , "Most read news" , "Самые читаемые новости" ]
 };
 
 export default langCheck;
