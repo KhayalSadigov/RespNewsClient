@@ -33,7 +33,7 @@ const CurrencyRate = () => {
           <p>1 EUR = {(1 / rate.EUR).toFixed(3)} AZN</p>
           <p>1 RUB = {(1 / rate.RUB).toFixed(3)} AZN</p>
           <p>1 GEL = {(1 / rate.GEL).toFixed(3)} AZN</p>
-          <p>1 TRY = {(1 / rate.TRY).toFixed(3)} AZN |</p>
+          <p>1 TRY = {(1 / rate.TRY).toFixed(3)} AZN •</p>
           {store.subtitles.data &&
             store.subtitles.data.map((e, i) => {
               if(e.newsDate.slice(8,10) == date)
@@ -45,7 +45,7 @@ const CurrencyRate = () => {
                     navigate(`news/${e.newsId}`);
                   }}
                 >
-                  | {e.newsTitle} |
+                  • {e.newsTitle} •
                 </p>
               );
             })}

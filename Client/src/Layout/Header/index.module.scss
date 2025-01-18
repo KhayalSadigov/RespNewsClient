@@ -50,6 +50,7 @@ header {
       }
       .name {
         img {
+          padding: 0 5px;
           @media screen and (max-width: 480px) {
             width: 100%;
           }

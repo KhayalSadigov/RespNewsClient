@@ -21,7 +21,7 @@ function Footer() {
             <div className={styles.logo}>
               <h2>{langCheck.logo.header[store.lang.data]}</h2>
               <div className={styles.image}>
-                <img src="./../../../public/images/Logo.png" alt="logo" />
+                <img src="./../images/Logo.png" alt="logo" />
               </div>
               <div className={styles.social}>
                 <a
@@ -81,7 +81,12 @@ function Footer() {
                   <li>
                     <KeyboardArrowRightIcon fontSize="small" />
                     <span>
-                      <Link className={styles.link} to={"/categories"}>
+                      <Link
+                        className={styles.link}
+                        onClick={() => {
+                          store.categories.setModal(true)
+                        }}
+                      >
                         {langCheck.quick.categories[store.lang.data]}
                       </Link>
                     </span>

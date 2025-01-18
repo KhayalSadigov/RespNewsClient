@@ -199,7 +199,7 @@ function HomePage() {
               </div>
               <div className={styles.more} style={store.news.load == "end" ? {} : { display: 'none' }}>
                 <div className={styles.content}>
-                  Bütün xəbərlər bitdi
+                  {langCheck.endNews[store.lang.data]}
                 </div>
               </div>
             </div>
@@ -251,6 +251,14 @@ function HomePage() {
                   />
                 </div>
               </div>
+              <div className={styles.youtube}>
+                <div className={styles.content}>
+                  <iframe
+                    src={store.youtube.data.length != 0 ? getYouTubeEmbedLink(store.youtube.data[0].videoUrl) : "about:blank"}
+                    frameBorder="0"
+                  ></iframe>
+                </div>
+              </div>
               <div className={styles.topNews}>
                 <div className={styles.content}>
                   <div className={styles.header}>
@@ -297,14 +305,7 @@ function HomePage() {
                   </form>
                 </div>
               </div>
-              <div className={styles.youtube}>
-                <div className={styles.content}>
-                  <iframe
-                    src={store.youtube.data.length != 0 ? getYouTubeEmbedLink(store.youtube.data[0].videoUrl) : "about:blank"}
-                    frameBorder="0"
-                  ></iframe>
-                </div>
-              </div>
+
               <div className={styles.categories}>
                 <div className={styles.content}>
                   <span className={styles.header}>

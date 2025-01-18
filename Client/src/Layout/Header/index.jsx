@@ -35,6 +35,7 @@ function Header() {
               />
             </div>
             <div className={styles.name}>
+              <img src="./../images/Gerb.jpg" alt="" />
               <img src="./../images/Logo.png" alt="" />
             </div>
             <div className={styles.photo}>
@@ -86,6 +87,16 @@ function Header() {
                 </li>
                 <li>
                   <Link
+                    className={styles.link}
+                    onClick={() => {
+                      store.categories.setModal(true)
+                    }}
+                  >
+                    {langCheck.nav.categories[store.lang.data]}
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     style={
                       store.route.data == "contact"
                         ? { backgroundColor: "#1976D2", color: "white" }
@@ -97,16 +108,7 @@ function Header() {
                     {langCheck.nav.contact[store.lang.data]}
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className={styles.link}
-                    onClick={() => {
-                      store.categories.setModal(true)
-                    }}
-                  >
-                    {langCheck.nav.categories[store.lang.data]}
-                  </Link>
-                </li>
+
                 <li>
                   <Link
                     style={

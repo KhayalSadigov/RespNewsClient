@@ -1,8 +1,8 @@
 const langCheck = {
   header: [
-    "| AZƏRBAYCAN MƏZƏNNƏSİ:",
-    "| AZERBAIJAN EXCHANGE RATE:",
-    "| ВАЛЮТНЫЙ КУРС АЗЕРБАЙДЖАНА:",
+    "• AZƏRBAYCAN MƏZƏNNƏSİ:",
+    "• AZERBAIJAN EXCHANGE RATE:",
+    "• ВАЛЮТНЫЙ КУРС АЗЕРБАЙДЖАНА:",
   ],
 };
 

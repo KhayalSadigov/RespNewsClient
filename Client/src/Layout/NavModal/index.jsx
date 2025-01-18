@@ -7,8 +7,8 @@ import SearchIcon from "@mui/icons-material/Search";
 
 function NavModal() {
   const store = useContext(DataContext);
-    const navigate = useNavigate();
-  
+  const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -40,7 +40,7 @@ function NavModal() {
             <li>
               <Link
                 style={
-                  store.route.data == "categories"
+                  store.route.data == "multimedia"
                     ? {
                       backgroundColor: "#1976D2",
                       color: "white",
@@ -52,6 +52,18 @@ function NavModal() {
                 to={"/multimedia"}
                 onClick={() => {
                   store.navModal.setData(false)
+                }}
+              >
+                {langCheck.nav.multimedia[store.lang.data]}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={styles.link}
+                onClick={() => {
+                  store.categories.setModal(true)
+                  store.navModal.setData(false)
+
                 }}
               >
                 {langCheck.nav.categories[store.lang.data]}
@@ -99,12 +111,12 @@ function NavModal() {
             </li>
           </ul>
         </div>
-        <form className={styles.search} onSubmit={(e)=>{
-                e.preventDefault() ;
-                e.target.children[0].value
-                navigate(`search/search/${e.target.children[0].value}`)
-                
-              }}>
+        <form className={styles.search} onSubmit={(e) => {
+          e.preventDefault();
+          e.target.children[0].value
+          navigate(`search/search/${e.target.children[0].value}`)
+
+        }}>
           <input
             type="text"
             placeholder={langCheck.nav.search[store.lang.data]}
